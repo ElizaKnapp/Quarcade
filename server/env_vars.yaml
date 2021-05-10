@@ -1,0 +1,2 @@
+env_variables:
+  DATABASE_URL: mongodb+srv://quarcadev:AaronArthurElizaElla4@quarcade.rwwrj.mongodb.net/Games?retryWrites=true&w=majority

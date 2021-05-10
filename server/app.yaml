@@ -1,0 +1,9 @@
+runtime: nodejs10
+
+service: api
+
+includes:
+  - env_vars.yaml
+
+network:
+  session_affinity: true
