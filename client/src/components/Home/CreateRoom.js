@@ -24,6 +24,7 @@ class CreateRoom extends React.Component {
   }
 
   componentDidMount() {
+    console.log("clientsocket" + clientSocket.id);
     console.log(window.location.hostname);
   }
 

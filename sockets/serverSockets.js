@@ -1,8 +1,9 @@
 const socketio = require("socket.io"); 
+/*
 const User = require("./models/user");
 const HomeLobby = require('./models/homeLobby');
 const AlphaSoup = require('./models/alphaSoup');
-
+*/
 
 // io.sockets.sockets.get(client) gets socket from id (client)
 
@@ -30,6 +31,7 @@ module.exports = {
 
       
       client.on("disconnect", () => {
+        /* REMOVE COMMENTS LATER
         // update the amount of words left
         AlphaSoup.findOne({roomCode: myRoom})
           .then(function (alphaSoup) {
@@ -98,6 +100,7 @@ module.exports = {
 
         // emit to all other poepl in the alphaSoup game to repull letters left
         io.to(myRoom).emit("clientDisconnectedLettersLeft", myRoom);
+        */
       });
 
       // ------------------------------------ Utility Requests ------------------------------------
