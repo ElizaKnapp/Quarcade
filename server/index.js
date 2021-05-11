@@ -8,6 +8,8 @@ const socketio = require("socket.io");
 const app = express();
 const server = http.createServer(app);
 
+// console.log("index.js");
+
 //for connection string
 require("dotenv").config();
 
