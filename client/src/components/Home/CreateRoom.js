@@ -3,6 +3,8 @@ import Axios from "axios";
 import clientSocket from "../../ClientSocket.js";
 import { HashRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 
+Axios.defaults.baseURL = "https://api-dot-quarcade.uk.r.appspot.com";
+
 class CreateRoom extends React.Component {
 
   constructor(props) {
@@ -21,6 +23,10 @@ class CreateRoom extends React.Component {
     clientSocket.emit("changeUsername", this.state.username);
   }
 
+  componentDidMount() {
+    console.log(clientSocket.id + "socket id");
+  }
+
 
 
   // ------------------------------------ Axios ------------------------------------
@@ -28,7 +34,7 @@ class CreateRoom extends React.Component {
   // post request to create new room
   async createRoom(roomCode) {
     try {
-      await Axios.post("http://localhost:5000/homeLobby", { roomCode: roomCode, users: {socket: clientSocket.id, name: this.state.username } }); 
+      await Axios.post("/homeLobby", { roomCode: roomCode, users: {socket: clientSocket.id, name: this.state.username } }); 
 
       // adds user to socket room
       clientSocket.emit("moveRoom", (roomCode));
@@ -43,22 +49,22 @@ class CreateRoom extends React.Component {
       });
 
     } catch (error) {
-      console.log("There was an error with post");
+      console.log("There was an error with post: " + error.message);
     }
   }
 
   async addUserToRoom(roomCode) {
     try {
-      await Axios.post("http://localhost:5000/user", { roomCode: roomCode, name: this.state.username, socket: clientSocket.id});
+      await Axios.post("/user", { roomCode: roomCode, name: this.state.username, socket: clientSocket.id});
     } catch (error) {
-      console.log("There was an error adding the user to the room homelobbies room");
+      console.log("There was an error adding the user to the room homelobbies room" + error.message);
     }
   }
 
   // get request to see if the room exists (true if it exists)
   async checkExistence(roomCode) {
     try {
-      await Axios.get(`http://localhost:5000/homeLobby/${roomCode}`).then(
+      await Axios.get(`/homeLobby/${roomCode}`).then(
         res => {
 
           const allRooms = res.data;

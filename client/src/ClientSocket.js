@@ -1,6 +1,6 @@
 import socketIOClient from "socket.io-client";
 
-const endpoint = window.location.hostname + ":" + 8000;
+const endpoint = "https://api-dot-quarcade.uk.r.appspot.com/";
 const socket = socketIOClient(endpoint);
 
 export default socket;

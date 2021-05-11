@@ -3,6 +3,8 @@ import Axios from "axios";
 import clientSocket from "../../ClientSocket.js";
 import { HashRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 
+Axios.defaults.baseURL = "https://api-dot-quarcade.uk.r.appspot.com";
+
 class JoinRoom extends React.Component {
   constructor(props) {
     super(props);
@@ -25,7 +27,7 @@ class JoinRoom extends React.Component {
     try {
 
       // checks if room exists
-      await Axios.get(`http://localhost:5000/homeLobby/${roomCode}`).then(
+      await Axios.get(`/homeLobby/${roomCode}`).then(
         res => {
           const matches = res.data;
 
@@ -37,10 +39,10 @@ class JoinRoom extends React.Component {
 
             if (userNum < 6) {
               // adds user to the room in the database
-              Axios.put(`http://localhost:5000/homeLobby/${roomCode}`, { users: {socket: clientSocket.id, name: this.state.username } });
+              Axios.put(`/homeLobby/${roomCode}`, { users: {socket: clientSocket.id, name: this.state.username } });
 
               // add user to the user collection
-              Axios.post("http://localhost:5000/user", {roomCode: roomCode, name: this.state.username, socket: clientSocket.id});
+              Axios.post("/user", {roomCode: roomCode, name: this.state.username, socket: clientSocket.id});
 
               // adds user to socket room
               clientSocket.emit("moveRoom", roomCode);

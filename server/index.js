@@ -46,7 +46,7 @@ const socket = require("./serverSockets.js");
 const router = require("./routes/user");
 socket.init(server);
 
-const port = 8000;
+const port = 443;
 io.listen(port);
 console.log("listening on port", port);
 
