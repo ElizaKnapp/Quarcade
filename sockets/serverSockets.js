@@ -12,7 +12,8 @@ module.exports = {
     io = socketio(http, {
       cors: {
         origin: "*",
-        methods: ["GET", "POST"]
+        methods: ["GET", "POST"],
+        // credentials: true
       }
     });
 
