@@ -16,7 +16,8 @@ app.get('/', (req, res) => {res.send('Socket backend is running')})
 const io = socketIo(server, {
   cors: {
     origin: "https://quarcade.uk.r.appspot.com/",
-    methods: ["GET", "POST"]
+    methods: ["GET", "POST"], 
+    credentials: true
   }
 });
 
