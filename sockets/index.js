@@ -35,6 +35,7 @@ io.on("connection", client => {
 
   
   client.on("disconnect", () => {
+    /*
     // update the amount of words left
     AlphaSoup.findOne({roomCode: myRoom})
       .then(function (alphaSoup) {
@@ -103,6 +104,7 @@ io.on("connection", client => {
 
     // emit to all other poepl in the alphaSoup game to repull letters left
     io.to(myRoom).emit("clientDisconnectedLettersLeft", myRoom);
+      */
   });
 
   // ------------------------------------ Utility Requests ------------------------------------
