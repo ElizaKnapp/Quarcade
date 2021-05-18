@@ -4,7 +4,7 @@ runtime: nodejs
 
 env: flex
 
-service: websocket
+service: socket
 
 manual_scaling:
   instances: 1
