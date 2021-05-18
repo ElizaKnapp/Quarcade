@@ -15,9 +15,17 @@ app.get('/', (req, res) => {res.send('Socket backend is running')})
 
 const io = socketIo(server, {
   cors: {
-    origin: "https://quarcade.uk.r.appspot.com/",
-    methods: ["GET", "POST"], 
-    credentials: true
+    origins: ["*"],
+    
+    handlePreflightRequest: (req, res) => {
+      res.writeHead(200, {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST",
+        "Access-Control-Allow-Headers": "my-custom-header",
+        "Access-Control-Allow-Credentials": true
+      });
+      res.end();
+    }
   }
 });
 
