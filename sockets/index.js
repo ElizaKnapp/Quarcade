@@ -6,10 +6,11 @@ const socketIo = require("socket.io");
 const port = process.env.PORT || 65080;
 
 const app = express();
+app.use(cors()); //some trust able thingy that I don't get
+
 const server = http.createServer(app);
 
 //STUFF 
-app.use(cors()); //some trust able thingy that I don't get
 app.get('/', (req, res) => {res.send('Socket backend is running')})
 //STUFF
 
@@ -22,7 +23,7 @@ const io = socketIo(server, {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST",
         "Access-Control-Allow-Headers": "my-custom-header",
-        "Access-Control-Allow-Credentials": true
+        "Access-Control-Allow-Credentials": false
       });
       res.end();
     }
