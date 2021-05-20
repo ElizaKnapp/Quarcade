@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const http = require("http");
+const https = require("https");
 const socketIo = require("socket.io");
 
 const port = process.env.PORT || 65080;
@@ -8,7 +8,7 @@ const port = process.env.PORT || 65080;
 const app = express();
 app.use(cors()); //some trust able thingy that I don't get
 
-const server = http.createServer(app);
+const server = https.createServer(app);
 
 //STUFF 
 app.get('/', (req, res) => {res.send('Socket backend is running')})
@@ -16,11 +16,11 @@ app.get('/', (req, res) => {res.send('Socket backend is running')})
 
 const io = socketIo(server, {
   cors: {
-    origins: ["*"],
+    origins: ["https://quarcade.uk.r.appspot.com/"],
     
     handlePreflightRequest: (req, res) => {
       res.writeHead(200, {
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": "https://quarcade.uk.r.appspot.com/",
         "Access-Control-Allow-Methods": "GET, POST",
         "Access-Control-Allow-Credentials": false
       });
@@ -33,6 +33,7 @@ let myRoom = "";
 
 // when a user connects to the server, this detects the socket connection and adds the socket id to a list
 io.on("connection", client => {
+  console.log("yay!");
   // ------------------------------------ Initial Requests ------------------------------------
   // adds user to the "unassigned" room
   client.join("unassigned");
