@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const https = require("https");
+const http = require("http");
 const socketIo = require("socket.io");
 
 const port = process.env.PORT || 65080;
@@ -8,7 +8,7 @@ const port = process.env.PORT || 65080;
 const app = express();
 app.use(cors()); //some trust able thingy that I don't get
 
-const server = https.createServer(app);
+const server = http.createServer(app);
 
 //STUFF 
 app.get('/', (req, res) => {res.send('Socket backend is running')})
