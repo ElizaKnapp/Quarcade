@@ -22,7 +22,7 @@ const io = socketIo(server, {
       res.writeHead(200, {
         "Access-Control-Allow-Origin": "https://quarcade.uk.r.appspot.com/",
         "Access-Control-Allow-Methods": "GET, POST",
-        "Access-Control-Allow-Credentials": false
+        "Access-Control-Allow-Credentials": true
       });
       res.end();
     }
